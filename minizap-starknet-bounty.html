@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniZap Starknet Bounty — Build in Public. Get Paid in STRK.</title>
+  <meta name="description" content="3-week mini developer bounty on Starknet. Ship real projects, learn in public, earn STRK weekly." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: {
+              purple: '#a855f7',
+              blue: '#3b82f6',
+              cyan: '#22d3ee',
+              pink: '#e879f9',
+            },
+          },
+          fontFamily: {
+            display: ['ui-sans-serif', 'system-ui', 'Segoe UI', 'sans-serif'],
+            body: ['ui-sans-serif', 'system-ui', 'Segoe UI', 'sans-serif'],
+          },
+          boxShadow: {
+            'neon-purple': '0 0 20px rgba(168, 85, 247, 0.5), 0 0 40px rgba(168, 85, 247, 0.2)',
+            'neon-cyan': '0 0 20px rgba(34, 211, 238, 0.45), 0 0 40px rgba(34, 211, 238, 0.15)',
+            'neon-blue': '0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.2)',
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, 'Segoe UI', sans-serif; }
+    .font-display { font-family: ui-sans-serif, system-ui, 'Segoe UI', sans-serif; letter-spacing: 0.02em; }
+    .text-glow-purple { text-shadow: 0 0 24px rgba(168, 85, 247, 0.8), 0 0 48px rgba(168, 85, 247, 0.4); }
+    .text-glow-cyan { text-shadow: 0 0 20px rgba(34, 211, 238, 0.7), 0 0 40px rgba(34, 211, 238, 0.35); }
+    .border-glow { box-shadow: inset 0 0 0 1px rgba(168, 85, 247, 0.3), 0 0 30px rgba(59, 130, 246, 0.15); }
+    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  </style>
+</head>
+<body class="bg-[#050508] text-slate-200 antialiased overflow-x-hidden">
+
+  <!-- Nav -->
+  <header class="sticky top-0 z-50 border-b border-purple-500/20 bg-[#050508]/90 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <a href="#" class="font-display text-lg font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-cyan-400 to-blue-500 text-glow-purple sm:text-xl">
+        MiniZap Starknet Bounty
+      </a>
+
+      <div class="order-3 flex w-full flex-1 basis-full justify-center lg:order-none lg:w-auto lg:basis-auto lg:flex-none">
+        <ul class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-medium text-slate-400 sm:gap-x-5 sm:text-sm">
+          <li><a href="#overview" class="transition hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">Overview</a></li>
+          <li class="hidden sm:inline text-purple-500/50">•</li>
+          <li><a href="#about" class="transition hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">About Us</a></li>
+          <li class="hidden sm:inline text-purple-500/50">•</li>
+          <li><a href="#rewards" class="transition hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">Rewards</a></li>
+          <li class="hidden sm:inline text-purple-500/50">•</li>
+          <li><a href="#how" class="transition hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">How It Works</a></li>
+          <li class="hidden sm:inline text-purple-500/50">•</li>
+          <li><a href="#ideas" class="transition hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">What to Build</a></li>
+          <li class="hidden sm:inline text-purple-500/50">•</li>
+          <li><a href="#rules" class="transition hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">Rules</a></li>
+        </ul>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="#submit" class="rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 px-4 py-2 text-xs font-semibold text-white shadow-neon-purple transition hover:scale-105 hover:shadow-[0_0_28px_rgba(168,85,247,0.55)] sm:text-sm">
+          Submit Now
+        </a>
+        <a href="https://x.com/Yungvicdrums" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-700 bg-slate-900/80 text-slate-300 transition hover:border-cyan-500/50 hover:text-cyan-400 hover:shadow-[0_0_16px_rgba(34,211,238,0.35)]" aria-label="Twitter @Yungvicdrums">
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-dashed border-slate-600 bg-slate-900/40 text-slate-500" title="Telegram (coming soon)" aria-label="Telegram placeholder">
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </a>
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-dashed border-slate-600 bg-slate-900/40 text-slate-500" title="Discord (coming soon)" aria-label="Discord placeholder">
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gradient-to-b from-[#0a0612] via-[#050508] to-[#050508]">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(120,50,200,0.35),transparent)]"></div>
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_60%,rgba(34,211,238,0.08),transparent)]"></div>
+
+    <div class="relative z-10 mx-auto max-w-5xl px-4 py-20 text-center sm:px-6 lg:px-8">
+      <p class="mb-4 font-display text-xs font-semibold uppercase tracking-[0.35em] text-cyan-400/90 text-glow-cyan sm:text-sm">
+        Starknet • Africa • Public builds
+      </p>
+      <h1 class="font-display text-4xl font-extrabold leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-cyan-300 to-blue-500 sm:text-5xl md:text-6xl lg:text-7xl text-glow-purple animate-float">
+        MiniZap Starknet Bounty
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-300 sm:text-xl">
+        Build in public. Get paid weekly in <span class="font-semibold text-cyan-400">STRK</span>.
+      </p>
+
+      <div class="mx-auto mt-10 grid max-w-3xl gap-4 rounded-2xl border border-purple-500/30 bg-slate-950/60 p-4 backdrop-blur-md border-glow sm:grid-cols-3 sm:p-6">
+        <div class="text-center">
+          <p class="text-xs uppercase tracking-wider text-slate-500">Current pool</p>
+          <p class="mt-1 font-display text-xl font-bold text-fuchsia-400 sm:text-2xl">
+            <span id="counter-pool">0</span> <span class="text-cyan-400">STRK</span>
+          </p>
+        </div>
+        <div class="text-center border-y border-purple-500/20 py-2 sm:border-x sm:border-y-0 sm:py-0">
+          <p class="text-xs uppercase tracking-wider text-slate-500">Submissions</p>
+          <p class="mt-1 font-display text-xl font-bold text-cyan-400 sm:text-2xl"><span id="counter-subs">0</span></p>
+        </div>
+        <div class="text-center">
+          <p class="text-xs uppercase tracking-wider text-slate-500">Ends in</p>
+          <p class="mt-1 font-display text-xl font-bold text-blue-400 sm:text-2xl"><span id="counter-days">0</span> days</p>
+        </div>
+      </div>
+
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+        <a href="#overview" class="w-full max-w-xs rounded-xl bg-gradient-to-r from-purple-600 via-fuchsia-600 to-cyan-500 px-8 py-4 text-center font-display font-bold text-white shadow-neon-purple transition hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(168,85,247,0.55)] sm:w-auto">
+          Sign Up Free
+        </a>
+        <a href="#submit" class="w-full max-w-xs rounded-xl border-2 border-cyan-400/60 bg-cyan-500/10 px-8 py-4 text-center font-display font-bold text-cyan-300 transition hover:scale-[1.02] hover:border-cyan-300 hover:bg-cyan-500/20 hover:shadow-neon-cyan sm:w-auto">
+          Submit Your Build
+        </a>
+      </div>
+
+      <div class="mt-14 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-slate-700/80 bg-slate-900/50 px-4 py-2 text-xs text-slate-400 sm:text-sm">
+        <span class="text-cyan-500/90">⚡</span>
+        <span>Powered by <strong class="text-slate-200">Starknet</strong></span>
+        <span class="text-slate-600">•</span>
+        <a href="https://x.com/Starknet" target="_blank" rel="noopener noreferrer" class="text-cyan-400 transition hover:text-cyan-300 hover:underline">x.com/Starknet</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" class="scroll-mt-24 border-t border-purple-500/10 bg-[#08060c] py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 sm:text-3xl">Overview</h2>
+      <p class="mt-6 text-lg leading-relaxed text-slate-400">
+        3-week mini developer bounty on Starknet. Ship real projects, learn in public, and earn STRK every week.
+      </p>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section id="about" class="scroll-mt-24 border-t border-purple-500/10 bg-[#050508] py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-center text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-blue-500 sm:text-3xl">About MiniZap</h2>
+      <p class="mt-8 text-lg leading-relaxed text-slate-400">
+        I’m <a href="https://x.com/Yungvicdrums" class="font-semibold text-cyan-400 hover:underline" target="_blank" rel="noopener noreferrer">@Yungvicdrums</a> building from Africa. MiniZap was created to empower developers across the continent to ship real projects on Starknet, learn in public, and get paid while doing it.
+      </p>
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-950/50 to-slate-950/80 p-8 text-center border-glow">
+        <span class="text-6xl drop-shadow-[0_0_20px_rgba(168,85,247,0.7)] filter" aria-hidden="true">🌍</span>
+        <p class="font-display text-xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-yellow-300 to-red-400 sm:text-2xl">
+          Made with love in Africa
+        </p>
+      </div>
+      <p class="mt-8 text-center text-lg font-medium text-slate-300">
+        <span class="text-cyan-400">Vision:</span> Bridging African talent with Starknet’s speed and scalability. Join the movement.
+      </p>
+    </div>
+  </section>
+
+  <!-- Rewards -->
+  <section id="rewards" class="scroll-mt-24 border-t border-purple-500/10 bg-[#08060c] py-16 sm:py-24">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="font-display text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 sm:text-3xl">Rewards</h2>
+        <p class="mt-4 font-display text-4xl font-extrabold text-fuchsia-400 text-glow-purple sm:text-5xl md:text-6xl">
+          84,930 <span class="text-cyan-400">STRK</span>
+        </p>
+        <p class="mt-2 text-slate-400">Total pool highlight</p>
+        <p class="mt-6 text-lg text-slate-300">
+          Weekly payout: <strong class="text-white">$1,000+</strong> split between <strong class="text-cyan-400">top 2</strong> every <strong class="text-fuchsia-400">Friday</strong>
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <article class="group rounded-2xl border border-purple-500/40 bg-slate-900/50 p-6 transition hover:border-fuchsia-500/60 hover:shadow-neon-purple">
+          <div class="font-display text-sm font-bold uppercase tracking-widest text-fuchsia-400">1st Place</div>
+          <p class="mt-4 font-display text-3xl font-bold text-white">45,000 <span class="text-lg text-cyan-400">STRK</span></p>
+          <p class="mt-2 text-sm text-slate-500">Top build of the week</p>
+        </article>
+        <article class="group rounded-2xl border border-cyan-500/40 bg-slate-900/50 p-6 transition hover:border-cyan-400/70 hover:shadow-neon-cyan">
+          <div class="font-display text-sm font-bold uppercase tracking-widest text-cyan-400">2nd Place</div>
+          <p class="mt-4 font-display text-3xl font-bold text-white">28,000 <span class="text-lg text-cyan-400">STRK</span></p>
+          <p class="mt-2 text-sm text-slate-500">Runner-up excellence</p>
+        </article>
+        <article class="group rounded-2xl border border-blue-500/40 bg-slate-900/50 p-6 transition hover:border-blue-400/70 hover:shadow-neon-blue md:col-span-1">
+          <div class="font-display text-sm font-bold uppercase tracking-widest text-blue-400">Community</div>
+          <p class="mt-4 font-display text-3xl font-bold text-white">11,930 <span class="text-lg text-cyan-400">STRK</span></p>
+          <p class="mt-2 text-sm text-slate-500">Community spotlight &amp; engagement</p>
+        </article>
+      </div>
+      <p class="mt-8 text-center text-sm text-slate-500">
+        Note: Paid directly in <span class="font-semibold text-cyan-500/90">STRK</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how" class="scroll-mt-24 border-t border-purple-500/10 bg-[#050508] py-16 sm:py-24">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center font-display text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-400 sm:text-3xl">How It Works</h2>
+      <ol class="mt-12 space-y-8">
+        <li class="flex gap-4 sm:gap-6">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-purple-500/50 bg-purple-950/50 font-display font-bold text-fuchsia-400 shadow-[0_0_20px_rgba(168,85,247,0.3)]">1</div>
+          <div>
+            <h3 class="font-display text-lg font-bold text-white">Build</h3>
+            <p class="mt-1 text-slate-400">Ship something real on Starknet—tools, dApps, experiments that push the ecosystem forward.</p>
+          </div>
+        </li>
+        <li class="flex gap-4 sm:gap-6">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-cyan-500/50 bg-cyan-950/30 font-display font-bold text-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.25)]">2</div>
+          <div>
+            <h3 class="font-display text-lg font-bold text-white">Tweet with #MiniZap + @Yungvicdrums</h3>
+            <p class="mt-1 text-slate-400">Share progress publicly so the community can follow along and judges can find your work.</p>
+          </div>
+        </li>
+        <li class="flex gap-4 sm:gap-6">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-blue-500/50 bg-blue-950/30 font-display font-bold text-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.25)]">3</div>
+          <div>
+            <h3 class="font-display text-lg font-bold text-white">Weekly review</h3>
+            <p class="mt-1 text-slate-400">Submissions are reviewed each week against quality, originality, and Starknet relevance.</p>
+          </div>
+        </li>
+        <li class="flex gap-4 sm:gap-6">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-fuchsia-500/50 bg-fuchsia-950/20 font-display font-bold text-fuchsia-300 shadow-[0_0_20px_rgba(232,121,249,0.2)]">4</div>
+          <div>
+            <h3 class="font-display text-lg font-bold text-white">Winners announced</h3>
+            <p class="mt-1 text-slate-400">Top builds get spotlighted—transparency and hype for everyone building in public.</p>
+          </div>
+        </li>
+        <li class="flex gap-4 sm:gap-6">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-500/50 bg-emerald-950/20 font-display font-bold text-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.2)]">5</div>
+          <div>
+            <h3 class="font-display text-lg font-bold text-white">Get paid</h3>
+            <p class="mt-1 text-slate-400">Winners receive STRK payouts—straight to builders who ship.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- What to Build -->
+  <section id="ideas" class="scroll-mt-24 border-t border-purple-500/10 bg-[#08060c] py-16 sm:py-24">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center font-display text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 sm:text-3xl">What to Build</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-slate-400">Ideas to spark your next Starknet project—link out to docs when you need depth.</p>
+
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <a href="https://docs.starknet.io/documentation/starknet_versions/version_and_changelog/" target="_blank" rel="noopener noreferrer" class="group rounded-xl border border-slate-700/80 bg-slate-900/40 p-5 transition hover:border-cyan-500/50 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)]">
+          <h3 class="font-display font-bold text-white group-hover:text-cyan-300">Gasless dApp flow</h3>
+          <p class="mt-2 text-sm text-slate-500">Abstract fees with paymasters or meta-transactions for smoother UX.</p>
+          <span class="mt-3 inline-block text-xs font-medium text-cyan-500/80">Starknet docs →</span>
+        </a>
+        <a href="https://docs.starknet.io/documentation/starknet_versions/" target="_blank" rel="noopener noreferrer" class="group rounded-xl border border-slate-700/80 bg-slate-900/40 p-5 transition hover:border-purple-500/50 hover:shadow-[0_0_24px_rgba(168,85,247,0.15)]">
+          <h3 class="font-display font-bold text-white group-hover:text-fuchsia-300">Wallet toolkit</h3>
+          <p class="mt-2 text-sm text-slate-500">Connectors, session keys, or signing helpers for devs and users.</p>
+          <span class="mt-3 inline-block text-xs font-medium text-fuchsia-500/80">Starknet docs →</span>
+        </a>
+        <a href="https://docs.starknet.io/" target="_blank" rel="noopener noreferrer" class="group rounded-xl border border-slate-700/80 bg-slate-900/40 p-5 transition hover:border-blue-500/50 hover:shadow-[0_0_24px_rgba(59,130,246,0.15)]">
+          <h3 class="font-display font-bold text-white group-hover:text-blue-300">Bitcoin on Starknet</h3>
+          <p class="mt-2 text-sm text-slate-500">Bridges, vaults, or DeFi ideas that leverage L2 scalability.</p>
+          <span class="mt-3 inline-block text-xs font-medium text-blue-500/80">Starknet docs →</span>
+        </a>
+        <a href="https://docs.starknet.io/documentation/architecture_and_concepts/" target="_blank" rel="noopener noreferrer" class="group rounded-xl border border-slate-700/80 bg-slate-900/40 p-5 transition hover:border-cyan-500/50 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)]">
+          <h3 class="font-display font-bold text-white group-hover:text-cyan-300">Cairo learning app</h3>
+          <p class="mt-2 text-sm text-slate-500">Interactive tutorials or sandboxes for contracts and proofs.</p>
+          <span class="mt-3 inline-block text-xs font-medium text-cyan-500/80">Starknet docs →</span>
+        </a>
+        <a href="https://docs.starknet.io/documentation/tools/" target="_blank" rel="noopener noreferrer" class="group rounded-xl border border-slate-700/80 bg-slate-900/40 p-5 transition hover:border-fuchsia-500/50 hover:shadow-[0_0_24px_rgba(232,121,249,0.15)]">
+          <h3 class="font-display font-bold text-white group-hover:text-fuchsia-300">Indexer / analytics</h3>
+          <p class="mt-2 text-sm text-slate-500">Dashboards for txs, contracts, or ecosystem metrics.</p>
+          <span class="mt-3 inline-block text-xs font-medium text-fuchsia-500/80">Starknet docs →</span>
+        </a>
+        <a href="https://docs.starknet.io/documentation/architecture_and_concepts/Contracts/contract-classes/" target="_blank" rel="noopener noreferrer" class="group rounded-xl border border-slate-700/80 bg-slate-900/40 p-5 transition hover:border-blue-500/50 hover:shadow-[0_0_24px_rgba(59,130,246,0.15)]">
+          <h3 class="font-display font-bold text-white group-hover:text-blue-300">Account abstraction demo</h3>
+          <p class="mt-2 text-sm text-slate-500">Smart accounts, social recovery, or batch operations.</p>
+          <span class="mt-3 inline-block text-xs font-medium text-blue-500/80">Starknet docs →</span>
+        </a>
+        <a href="https://docs.starknet.io/documentation/starknet_versions/" target="_blank" rel="noopener noreferrer" class="group rounded-xl border border-slate-700/80 bg-slate-900/40 p-5 transition hover:border-cyan-500/50 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)]">
+          <h3 class="font-display font-bold text-white group-hover:text-cyan-300">NFT / gaming primitive</h3>
+          <p class="mt-2 text-sm text-slate-500">On-chain assets, composable items, or Starknet-native games.</p>
+          <span class="mt-3 inline-block text-xs font-medium text-cyan-500/80">Starknet docs →</span>
+        </a>
+        <a href="https://docs.starknet.io/" target="_blank" rel="noopener noreferrer" class="group rounded-xl border border-slate-700/80 bg-slate-900/40 p-5 transition hover:border-purple-500/50 hover:shadow-[0_0_24px_rgba(168,85,247,0.15)]">
+          <h3 class="font-display font-bold text-white group-hover:text-fuchsia-300">Public goods tool</h3>
+          <p class="mt-2 text-sm text-slate-500">Open-source utilities that help the whole Starknet community.</p>
+          <span class="mt-3 inline-block text-xs font-medium text-purple-500/80">Starknet docs →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Criteria + Resources -->
+  <section id="criteria" class="scroll-mt-24 border-t border-purple-500/10 bg-[#050508] py-16 sm:py-24">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center font-display text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 sm:text-3xl">Selection Criteria &amp; Resources</h2>
+      <div class="mt-12 grid gap-10 lg:grid-cols-2">
+        <div class="rounded-2xl border border-purple-500/30 bg-slate-900/40 p-6 sm:p-8 border-glow">
+          <h3 class="font-display text-lg font-bold text-fuchsia-400">Judging criteria</h3>
+          <ul class="mt-6 space-y-4 text-slate-400">
+            <li class="flex gap-3"><span class="text-cyan-500">▹</span> Originality and technical depth of the Starknet integration</li>
+            <li class="flex gap-3"><span class="text-cyan-500">▹</span> Quality of public build logs (#MiniZap, clear demos)</li>
+            <li class="flex gap-3"><span class="text-cyan-500">▹</span> UX, documentation, and how useful it is for others</li>
+            <li class="flex gap-3"><span class="text-cyan-500">▹</span> Consistency across the bounty period</li>
+            <li class="flex gap-3"><span class="text-cyan-500">▹</span> Alignment with Starknet strengths (scale, proofs, accounts)</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-cyan-500/30 bg-slate-900/40 p-6 sm:p-8">
+          <h3 class="font-display text-lg font-bold text-cyan-400">Resources</h3>
+          <ul class="mt-6 space-y-4">
+            <li>
+              <a href="https://docs.starknet.io/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-300 transition hover:text-cyan-400">
+                <span class="text-xl">📚</span> Official Starknet documentation
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-2 text-slate-500 transition hover:text-purple-400">
+                <span class="text-xl">💬</span> Discord <span class="text-xs text-slate-600">(link coming soon)</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-2 text-slate-500 transition hover:text-cyan-400">
+                <span class="text-xl">✈️</span> Telegram <span class="text-xs text-slate-600">(link coming soon)</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/Starknet" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-300 transition hover:text-cyan-400">
+                <span class="text-xl">𝕏</span> Starknet on X
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rules -->
+  <section id="rules" class="scroll-mt-24 border-t border-purple-500/10 bg-[#08060c] py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center font-display text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-400 sm:text-3xl">Rules</h2>
+      <ul class="mt-10 space-y-4 text-slate-400">
+        <li class="flex gap-3 rounded-lg border border-slate-800/80 bg-slate-900/30 px-4 py-3"><span class="text-fuchsia-500">✦</span> Original work only—no copying whole projects or plagiarizing code.</li>
+        <li class="flex gap-3 rounded-lg border border-slate-800/80 bg-slate-900/30 px-4 py-3"><span class="text-fuchsia-500">✦</span> You must tag <strong class="text-slate-300">@Yungvicdrums</strong> and use <strong class="text-cyan-500/90">#MiniZap</strong> on public updates.</li>
+        <li class="flex gap-3 rounded-lg border border-slate-800/80 bg-slate-900/30 px-4 py-3"><span class="text-fuchsia-500">✦</span> Builds should meaningfully use or relate to the Starknet ecosystem.</li>
+        <li class="flex gap-3 rounded-lg border border-slate-800/80 bg-slate-900/30 px-4 py-3"><span class="text-fuchsia-500">✦</span> Submit links to repo, demo, and a short write-up when requested.</li>
+        <li class="flex gap-3 rounded-lg border border-slate-800/80 bg-slate-900/30 px-4 py-3"><span class="text-fuchsia-500">✦</span> Be respectful—no spam, harassment, or misleading claims.</li>
+        <li class="flex gap-3 rounded-lg border border-slate-800/80 bg-slate-900/30 px-4 py-3"><span class="text-fuchsia-500">✦</span> Organizers may update rules for clarity; major changes will be announced publicly.</li>
+      </ul>
+      <p class="mt-8 text-center text-xs leading-relaxed text-slate-600">
+        Disclaimer: MiniZap Starknet Bounty is an independent community initiative. Token amounts, schedules, and eligibility may change. Nothing here is financial advice. Participate at your own discretion.
+      </p>
+    </div>
+  </section>
+
+  <!-- Submit anchor -->
+  <section id="submit" class="scroll-mt-24 border-t border-cyan-500/20 bg-gradient-to-b from-[#0a0618] to-[#050508] py-16">
+    <div class="mx-auto max-w-xl px-4 text-center sm:px-6">
+      <p class="font-display text-lg text-slate-300">Ready to ship?</p>
+      <a href="https://x.com/Yungvicdrums" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 px-10 py-4 font-display font-bold text-white shadow-neon-purple transition hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(168,85,247,0.5)]">
+        Submit Now via @Yungvicdrums
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-purple-500/20 bg-[#030305] py-14">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
+      <p class="font-display text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-yellow-300 to-red-500">
+        Made with love in Africa
+      </p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm">
+        <a href="https://x.com/Yungvicdrums" class="text-cyan-400 transition hover:underline" target="_blank" rel="noopener noreferrer">@Yungvicdrums</a>
+        <span class="text-slate-700">•</span>
+        <a href="https://x.com/Starknet" class="text-slate-400 transition hover:text-cyan-400" target="_blank" rel="noopener noreferrer">x.com/Starknet</a>
+        <span class="text-slate-700">•</span>
+        <a href="https://docs.starknet.io/" class="text-slate-400 transition hover:text-cyan-400" target="_blank" rel="noopener noreferrer">https://docs.starknet.io/</a>
+      </div>
+      <p class="mt-8 text-xs text-slate-600">© <span id="year"></span> MiniZap Starknet Bounty. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var canvas = document.getElementById('hero-canvas');
+      var ctx = canvas.getContext('2d');
+      var particles = [];
+      var bolts = [];
+      var w, h, dpr;
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = canvas.width = Math.floor(canvas.offsetWidth * dpr);
+        h = canvas.height = Math.floor(canvas.offsetHeight * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function initParticles() {
+        particles = [];
+        var n = Math.min(80, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 12000));
+        for (var i = 0; i < n; i++) {
+          particles.push({
+            x: Math.random() * canvas.offsetWidth,
+            y: Math.random() * canvas.offsetHeight,
+            r: Math.random() * 2 + 0.5,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
+            a: Math.random() * 0.5 + 0.2,
+          });
+        }
+      }
+
+      function spawnBolt() {
+        if (Math.random() > 0.03) return;
+        var x = Math.random() * canvas.offsetWidth;
+        bolts.push({
+          x: x,
+          y: 0,
+          segments: [],
+          life: 1,
+        });
+        var cy = 0;
+        while (cy < canvas.offsetHeight * 0.65) {
+          cy += Math.random() * 40 + 15;
+          bolts[bolts.length - 1].segments.push({
+            x: x + (Math.random() - 0.5) * 60,
+            y: cy,
+          });
+          x += (Math.random() - 0.5) * 50;
+        }
+      }
+
+      function tick() {
+        ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = canvas.offsetWidth;
+          if (p.x > canvas.offsetWidth) p.x = 0;
+          if (p.y < 0) p.y = canvas.offsetHeight;
+          if (p.y > canvas.offsetHeight) p.y = 0;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(168, 85, 247, ' + p.a * 0.4 + ')';
+          ctx.fill();
+          ctx.fillStyle = 'rgba(34, 211, 238, ' + p.a * 0.25 + ')';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 0.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        spawnBolt();
+        for (var b = bolts.length - 1; b >= 0; b--) {
+          var bolt = bolts[b];
+          ctx.strokeStyle = 'rgba(168, 85, 247, ' + bolt.life * 0.45 + ')';
+          ctx.lineWidth = 1.5;
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = 'rgba(34, 211, 238, 0.8)';
+          ctx.beginPath();
+          ctx.moveTo(bolt.x, 0);
+          var segs = bolt.segments;
+          for (var s = 0; s < segs.length; s++) {
+            ctx.lineTo(segs[s].x, segs[s].y);
+          }
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+          bolt.life -= 0.04;
+          if (bolt.life <= 0) bolts.splice(b, 1);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function animateValue(id, end, duration, formatter) {
+        var el = document.getElementById(id);
+        var start = 0;
+        var startTime = null;
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var p = Math.min((ts - startTime) / duration, 1);
+          var val = Math.round(easeOutCubic(p) * end);
+          el.textContent = formatter ? formatter(val) : String(val);
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      window.addEventListener('resize', function () {
+        resize();
+        initParticles();
+      });
+      resize();
+      initParticles();
+      tick();
+
+      animateValue('counter-pool', 84930, 2200, function (v) {
+        return v.toLocaleString('en-US');
+      });
+      animateValue('counter-subs', 12, 1500);
+      animateValue('counter-days', 19, 1800);
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
